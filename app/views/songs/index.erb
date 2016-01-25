@@ -3,13 +3,10 @@
     <p>Title: <%= song.title %></p>
     <p><small>Added by: <%= song.author %></small></p>
     <% if song.url? %>
-      <p>url: <a href = "<%= song.url %>"><%= message.url %></a></p>
+      <p>url: <a href = "<%= song.url %>"><%= song.url %></a></p>
     <% end %>
   </div>
 <% end %>
 
-
-
-
 <hr/>
-<h2><a href = "/songs/new">Add a new song</a>
+<h2><a href = "/songs/new">Add a new song</a></h2>

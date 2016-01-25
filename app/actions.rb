@@ -6,8 +6,18 @@ end
 
 
 get '/songs' do
+  redirect 'songs/index'
+end
+
+
+get '/songs/index' do
   @songs = Song.all
-  erb :'song/index'
+  erb :'songs/index'
+end
+
+
+get '/songs/new' do
+  erb :'songs/new'
 end
 
 
