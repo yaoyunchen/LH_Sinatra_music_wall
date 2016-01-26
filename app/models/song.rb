@@ -1,6 +1,7 @@
 class Song < ActiveRecord::Base
   belongs_to :user
-  has_many :votes, :reviews
+  has_many :votes
+  has_many :reviews
   
   validates :user_id, 
     presence: true

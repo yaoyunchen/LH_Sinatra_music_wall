@@ -1,4 +1,5 @@
-class Review < ActiveRecord:Base
-  belongs_to :user, :song
+class Review < ActiveRecord::Base
+  belongs_to :user
+  belongs_to :song
   validates :user, :song, presence: true
 end
