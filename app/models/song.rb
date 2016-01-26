@@ -1,11 +1,13 @@
 class Song < ActiveRecord::Base
   belongs_to :user
-
+  has_many :votes
+  
   validates :user_id, 
     presence: true
 
   validates :title,
-    presence: true
+    presence: true,
+    uniqueness: true
 
   # validates :url,
   #   format: {with: URI::regexp}, if: Proc.new { |a| a.url.present? }
