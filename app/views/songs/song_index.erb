@@ -16,7 +16,7 @@
       <tr>
         <td><%= song.id %></td>
         <td><%= song.title %></td>
-        <td><%= song.author %></td>
+        <td><%= song.user.name %></td>
         <td>
         <% if song.url? %>
           <a href = "<%= song.url %>"><%= song.url %></a>
