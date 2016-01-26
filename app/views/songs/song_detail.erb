@@ -1,0 +1,72 @@
+<h1>Song Details</h1>
+<hr/>
+
+
+<dl class="dl-horizontal">
+  <dt>Song Name</dt>
+  <dd><%= @song.title %></dd>
+  <dt>Votes</dt>
+  <dd><%= @song.votes.count %>
+  <% if @song.url? %>
+  <dt>Link</dt>
+  <dd><a href = "<%= @song.url %>"><%= @song.url %></a></dd>
+  <% end %>
+  <br/>
+  <dt>Added by</dt>
+  <dd><%= @song.user.name %></dd>
+  <dt>On</dt>
+  <dd><%= @song.created_at %></dd>
+</dl>
+
+<hr/>
+<% if Review.where(user_id: current_user.id, song_id: @song.id).count > 0 %>
+  <h3>Delete Review</h3>
+  <form method="post" action="/review/delete">
+    <input type="hidden" name="id" value="<%= @song.id %>">
+    <button type="submit" class="btn btn-danger btn-sm">
+    Delete Review
+    </button>
+  </form>
+<% else %>
+  <h1>Add Review</h1>
+  <form method="post" action="/review">
+    <% if @add_review && @add_review.errors.any? %>
+       <div>
+        <strong>Please fix the following issues:</strong>
+        <ul>
+          <% @add_review.errors.full_messages.each do |message| %>
+            <li><%= message%></li>
+          <% end %>
+        </ul>
+      </div>      
+    <% end %>
+    <div class="form-group" >
+      <label>Review:</label>
+      <textarea class="form-control" rows="3" name="review" value="<%= @add_review && @add_review.review %>"></textarea>
+    </div>
+    <input type="hidden" name="song_id" value="<%= @song.id %>">
+    <button type="submit" class="btn btn-primary">Submit</button>
+  </form>
+<% end %>
+
+
+
+<hr/>
+<h1>Reviews</h1>
+<hr/>
+<% @reviews.each do |review| %>
+  <dl class="dl-horizontal">  
+    <dt>Reviewed By</dt>
+    <dd><%= review.user.name  %></dd>
+    <dt>On</dt>
+    <dd><%= review.created_at %>
+    <br/>
+    <dt>Review</dt>
+    <dd><%= review.review %></dd>
+  </dl>
+  <hr/>
+<% end %>
+
+
+
+

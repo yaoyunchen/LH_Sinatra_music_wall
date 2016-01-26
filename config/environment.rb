@@ -28,4 +28,6 @@ end
 require APP_ROOT.join('config', 'database')
 
 # Load the routes / actions
-require APP_ROOT.join('app', 'actions')
+require APP_ROOT.join('app', 'actions', 'actions')
+require APP_ROOT.join('app', 'actions', 'song_actions')
+require APP_ROOT.join('app', 'actions', 'user_actions')

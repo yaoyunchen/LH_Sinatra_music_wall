@@ -1,7 +1,7 @@
 <h1>Songs</h1>
 <hr/>
 
-<table class="table table-hover">
+<table class="table table-hover noselect">
   <thead>
     <tr>
       <th>Votes</th>
@@ -9,35 +9,42 @@
       <th>Added By</th>
       <th>link</th>
       <th>Added Date</th>
+      <th>Details</th>
       <th>Upvote!</th>
     </tr>
   </thead>
-  <tbody>
+  <tbody style="color:Grey">
     <% @songs.each do |song| %>
-      <tr>
-        <td><%= song.votes.count %></td>
-        <td><%= song.title %></td>
-        <td><%= song.user.name %></td>
-        <td>
-        <% if song.url? %>
-          <a href = "<%= song.url %>"><%= song.url %></a>
-        <% else %>
-          -
-        <% end %>
-        </td>
-        <td><%= song.created_at %></td>
-        <td>
-        <% if Vote.where(user_id: current_user.id, song_id: song.id).count > 0 %>
-          Voted!
-        <% else %>
-        <form method="post" action="/vote">
-          <input type="hidden" name="song_id" value="<%=song.id%>">
-          <button type="submit" class="btn btn-default">
-            <span class="glyphicon glyphicon-thumbs-up"></span>
-          </button>
-        </form>
-        <% end %>
-        </td>
+      <tr id="song_detail">
+          <td><%= song.votes.count %></td>
+          <td><%= song.title %></td>
+          <td><%= song.user.name %></td>
+          <td>
+          <% if song.url? %>
+            <a href = "<%= song.url %>"><%= song.url %></a>
+          <% else %>
+            -
+          <% end %>
+          </td>
+          <td><%= song.created_at %></td>
+          <td>
+            <form method="get" action="/search">
+            <input type="hidden" name="id" value="<%=song.id%>">
+            <button type="submit" class="btn btn-default btn-block btn-xs">View</button>
+          </form>
+          </td>
+          <td>
+          <% if Vote.where(user_id: current_user.id, song_id: song.id).count > 0 %>
+            Voted!
+          <% else %>
+            <form method="post" action="/vote">
+              <input type="hidden" name="song_id" value="<%=song.id%>">
+              <button type="submit" class="btn btn-default btn-xs">
+                <span class="glyphicon glyphicon-thumbs-up"></span>
+              </button>
+            </form>
+          <% end %>
+          </td>
       </tr>
     <% end %>
   </tbody>

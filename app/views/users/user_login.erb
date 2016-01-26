@@ -1,15 +1,22 @@
-<h1>Login</h1>
-<hr/>
-<form class="form-login" role="form" action="/login" method="POST">
-  <div class="form-group">
-      <label for="inputEmail">Email</label>
-      <input type="email" class="form-control" name="email" placeholder="Email" value="<%= @user && @user.email %>" required>
-  </div>
-  <div class="form-group">
-      <label for="inputPassword">Password</label>
-      <input type="password" class="form-control" name="password" placeholder="Password" value="<%= @user && @user.password %>" required>
-  </div>
-  <button type="submit" class="btn btn-primary">Login</button>
-  <button class="btn"><a href="/users/user_signup" style="text-decoration:none">Sign Up</a></button>
-</form>
+<% unless current_user %>
+  <h1>Login</h1>
+  <hr/>
+  <form class="form-login" role="form" action="/login" method="POST">
+    <div class="form-group">
+        <label for="inputEmail">Email</label>
+        <input type="email" class="form-control" name="email" placeholder="Email" value="<%= @user && @user.email %>" required>
+    </div>
+    <div class="form-group">
+        <label for="inputPassword">Password</label>
+        <input type="password" class="form-control" name="password" placeholder="Password" value="<%= @user && @user.password %>" required>
+    </div>
+    <button type="submit" class="btn btn-primary">Login</button>
+    <button class="btn"><a href="/users/user_signup" style="text-decoration:none">Sign Up</a></button>
+  </form>
+<% else %>
+  <h1>Logout</h1>
+  <hr/>
+  <button class="btn"><a href="/logout">Logout</a></button>
+<% end %>
+
 
