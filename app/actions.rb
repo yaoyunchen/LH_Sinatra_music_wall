@@ -6,18 +6,18 @@ end
 
 
 get '/songs' do
-  redirect 'songs/index'
+  redirect 'songs/song_index'
 end
 
 
-get '/songs/index' do
+get '/songs/song_index' do
   @songs = Song.all
-  erb :'songs/index'
+  erb :'songs/song_index'
 end
 
 
-get '/songs/new' do
-  erb :'songs/new'
+get '/songs/song_new' do
+  erb :'songs/song_new'
 end
 
 
@@ -30,7 +30,7 @@ post '/songs' do
   if @song.save
     redirect '/songs'
   else
-    erb :'songs/new'
+    erb :'songs/song_new'
   end
 end
 

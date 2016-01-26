@@ -1,0 +1,37 @@
+<h1>Songs</h1>
+<hr/>
+
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th>#</th>
+      <th>Song Title</th>
+      <th>Added By</th>
+      <th>link</th>
+      <th>Added Date</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @songs.each do |song| %>
+      <tr>
+        <td><%= song.id %></td>
+        <td><%= song.title %></td>
+        <td><%= song.author %></td>
+        <td>
+        <% if song.url? %>
+          <a href = "<%= song.url %>"><%= song.url %></a>
+        <% else %>
+          -
+        <% end %>
+        </td>
+        <td><%= song.created_at %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+
+
+
+
+
