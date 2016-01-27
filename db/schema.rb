@@ -17,8 +17,9 @@ ActiveRecord::Schema.define(version: 20160126162616) do
     t.integer  "user_id"
     t.integer  "song_id"
     t.text     "review"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.integer  "rating",     default: 0
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
   end
 
   create_table "songs", force: :cascade do |t|

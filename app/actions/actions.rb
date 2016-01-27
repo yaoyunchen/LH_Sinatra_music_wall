@@ -24,7 +24,8 @@ post '/review' do
   Review.create!(
     user_id: current_user.id,
     song_id: params[:song_id],
-    review: params[:review]
+    review: params[:review],
+    rating: params[:rating]
   )
   redirect '/songs'
 end

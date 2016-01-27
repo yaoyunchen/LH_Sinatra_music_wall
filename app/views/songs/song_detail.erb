@@ -41,6 +41,8 @@
       </div>      
     <% end %>
     <div class="form-group" >
+      <label>Song Rating:</label>
+      <input id="input-21b" class="rating" value="@add_review && @add_review.rating" type="number"  name="rating" min=0 max=5 step=1 data-size="xs">
       <label>Review:</label>
       <textarea class="form-control" rows="3" name="review" value="<%= @add_review && @add_review.review %>"></textarea>
     </div>
@@ -59,7 +61,14 @@
     <dt>Reviewed By</dt>
     <dd><%= review.user.name  %></dd>
     <dt>On</dt>
-    <dd><%= review.created_at %>
+    <dd><%= review.created_at %></dd>
+    <dt>Review Rating</dt>
+    <dd>
+      <form>
+        <input id="input-21b" value="<%= review.rating %>" type="number" class="rating" min=0 max=5 step=1 data-size="xs" disabled="true">
+      </form>
+    </dd>
+
     <br/>
     <dt>Review</dt>
     <dd><%= review.review %></dd>
