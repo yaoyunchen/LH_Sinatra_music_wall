@@ -1,6 +1,6 @@
 
-get '/users/user_login' do
-  erb :'users/user_login'
+get '/users/login' do
+  erb :'users/login'
 end
 
 post '/login' do
@@ -10,7 +10,7 @@ post '/login' do
     session[:user_id] = @user.id
     redirect '/songs'
   else
-    erb :'users/user_login'
+    erb :'users/login'
   end
   
 end
@@ -24,8 +24,8 @@ end
 
 
 
-get '/users/user_signup' do
-  erb :'users/user_signup'
+get '/users/signup' do
+  erb :'users/signup'
 end
 
 post '/signup' do
@@ -39,6 +39,6 @@ post '/signup' do
     redirect '/songs'
   else
 
-    erb :'users/user_signup'
+    erb :'users/signup'
   end
 end

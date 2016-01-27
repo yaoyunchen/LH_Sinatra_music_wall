@@ -8,7 +8,7 @@ helpers do
 end
 
 get '/' do
-  current_user ? (redirect '/songs') : (erb :'users/user_login')
+  current_user ? (redirect '/songs') : (erb :'users/login')
 end
 
 
@@ -20,21 +20,23 @@ post '/vote' do
   redirect '/songs'
 end
 
+
 post '/review' do
-  Review.create!(
+  @review = Review.create!(
     user_id: current_user.id,
     song_id: params[:song_id],
     review: params[:review],
     rating: params[:rating]
   )
-  redirect '/songs'
+  redirect "/search?id=#{@review.song_id}"
 end
 
-post '/review/delete' do
-  @review = Review.where(
-    user_id: current_user.id, 
-    song_id: params[:id]
-  ).limit(1)
-  @review.destroy_all
-  redirect '/'
+
+delete '/review/:id/delete' do
+  @review = Review.find params[:id]
+  @song_id = @review.song.id
+  @review.destroy
+  redirect "/search?id=#{@song_id}"
 end
+
+

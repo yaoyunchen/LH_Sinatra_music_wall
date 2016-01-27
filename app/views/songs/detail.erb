@@ -19,13 +19,12 @@
 </dl>
 
 <hr/>
-<% if Review.where(user_id: current_user.id, song_id: @song.id).count > 0 %>
+<% if @user_reviewed %>
   <h3>Delete Review</h3>
-  <form method="post" action="/review/delete">
-    <input type="hidden" name="id" value="<%= @song.id %>">
+  <form method="post" action="/review/<%= @user_reviewed.id %>/delete">
+    <input type="hidden" name="_method" value="delete">
     <button type="submit" class="btn btn-danger btn-sm">
-    Delete Review
-    </button>
+    Delete Review</button>
   </form>
 <% else %>
   <h1>Add Review</h1>

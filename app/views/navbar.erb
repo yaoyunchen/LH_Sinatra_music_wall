@@ -15,18 +15,10 @@
               <li><a href="/">Home</a></li>
               <% if current_user %>
                 <li><a href="/songs">Songs</a></li>
-                <li><a href="/songs/song_new">Add Song</a></li>
-                <!--
-                <form role="search" class="navbar-form navbar-left" action='/songs/song_show'>
-                  <div class="collapse navbar-collapse navbarCollapse">
-                    <input type="text" placeholder="Search Songs" class="form-control">
-                    <button class="btn btn-default" type="submit"><i class="glyphicon glyphicon-search"></i></button>
-                  </div>
-                </form>
-                -->
+                <li><a href="/songs/new">Add Song</a></li>
               <% else %>
-                <li><a href="/users/user_login">Songs</a></li>
-                <li><a href="/users/user_login">Add Song</a></li>
+                <li><a href="/users/login">Songs</a></li>
+                <li><a href="/users/login">Add Song</a></li>
               <% end %>
           </ul>
           <ul class="nav navbar-nav navbar-right">
@@ -35,7 +27,7 @@
               <a href="/logout">Logout of <%= current_user.email%></a>
               </li>
             <% else %>
-              <li><a href="/users/user_login">Login</a></li>
+              <li><a href="/users/login">Login</a></li>
             <% end %>
               
           </ul>
